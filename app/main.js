@@ -50,9 +50,9 @@ var notedMain = function(){
 
 	this.initTray = function(){
 		appIcon = new Tray(null);
-		//appIcon.setImage('../resources/win/app.ico', false); // disable the behavior
-		//appIcon = new Tray("./resources/win/app.ico");
-		//appIcon.setPressedImage(path.join(__dirname, "./menu-bar-white.png"));
+		// appIcon.setImage('../resources/win/app.ico', false); // disable the behavior
+		// appIcon = new Tray("./resources/win/app.ico");
+		// appIcon.setPressedImage(path.join(__dirname, "./menu-bar-white.png"));
 
 		var contextMenu = Menu.buildFromTemplate([
 			{ label: 'Save from Clippord', type: 'radio' },
@@ -70,7 +70,6 @@ var notedMain = function(){
 	this.initWatch = function(path){
 		this.watch = new Watch();
 
-		//this.watch.blacklist('^[.]');
 		this.watch.blacklist('^[.]', function(filename) {
 			app.log('Blacklisted event to hidden file/dir: ' + filename);
 		});
@@ -85,7 +84,7 @@ var notedMain = function(){
 
 		this.watch.addAction(function(data) {
 			app.log('Main Trigged: noted.watch.action');
-			//console.log(data.event + " : " + data.fullPath);
+			// console.log(data.event + " : " + data.fullPath);
 			mainWindow.webContents.send('noted.watch.data', data);
 		});
 
@@ -96,7 +95,7 @@ var notedMain = function(){
 		var storage = config.root || path.join(__base, '../storage');
 
 		// http://stackoverflow.com/a/24225816/4864081
-		//if ( path.resolve(storage) === path.normalize(storage).replace(/[\/|\\]$/, '') ) {
+		// if ( path.resolve(storage) === path.normalize(storage).replace(/[\/|\\]$/, '') ) {
 		if ( path.isAbsolute(storage) ) {
 			this.storage = path.resolve( storage );
 		} else {
@@ -111,11 +110,11 @@ var notedMain = function(){
 
 		// https://github.com/atom/electron/blob/master/docs/api/browser-window.md
 		mainWindow = new BrowserWindow({
-			//icon : '/icon.png', // https://github.com/atom/electron/blob/master/docs/api/native-image.md
-			//frame: false,
+			// icon : '/icon.png', // https://github.com/atom/electron/blob/master/docs/api/native-image.md
+			// frame: false,
 			width: 800, //size.width, //800,
 			height: 600, //size.height, //600,
-			//transparent:true,
+			// transparent:true,
 			'subpixel-font-scaling': false,
 			// 'auto-hide-menu-bar': true,
 			'use-content-size': true,
@@ -210,8 +209,8 @@ var notedMain = function(){
 
 
 		// ipc.on('synchronous-message', function(event, arg) {
-		  // console.log(arg);  // prints "ping"
-		  // event.returnValue = 'pong';
+		//   console.log(arg);  // prints "ping"
+		//   event.returnValue = 'pong';
 		// });
 
 		return this;
@@ -396,8 +395,8 @@ var notedMain = function(){
 
 	// http://dribbit.eu/nodejs/scan-a-directory
 	this.scanTest1 = function(){
-		//var dirPath = path.join(__dirname, 'files');
-		//var dirPath = path.resolve( __dirname, '../..', this.config.root||'storage' );
+		// var dirPath = path.join(__dirname, 'files');
+		// var dirPath = path.resolve( __dirname, '../..', this.config.root||'storage' );
 		var dirPath = path.resolve( __dirname, '../', this.config.root||'storage');
 		app.log(dirPath);
 		fs.readdir(dirPath, function (err, files) {
@@ -440,11 +439,11 @@ var notedMain = function(){
 			return this;
 		}
 
-		//# type agnostic info
-		//var stats = fs.lstatSync(root),
+		// # type agnostic info
+		// var stats = fs.lstatSync(root),
 		var info = {
 			path: root,
-			//id: 'tree-'+path.basename(root),
+			// id: 'tree-'+path.basename(root),
 			label: path.basename(root)
 		};
 
@@ -483,12 +482,12 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
 	noted
 		.init(this);
-		//.scanTest2();
-		//.inspect( noted.dirTree( path.resolve(__dirname, '../', 'storage' ) ) );
+		// .scanTest2();
+		// .inspect( noted.dirTree( path.resolve(__dirname, '../', 'storage' ) ) );
 
 	// node dirTree.js ~/foo/bar
-    //var util = require('util');
-    //console.log(util.inspect(noted.dirTree(process.argv[2]), false, null));
+    // var util = require('util');
+    // console.log(util.inspect(noted.dirTree(process.argv[2]), false, null));
 });
 
 var noted = new notedMain();

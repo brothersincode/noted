@@ -1,14 +1,13 @@
 {
-	"author":"geminorum",
-	"email":"contact@geminorum.ir",
+	"author": "geminorum",
+	"email": "contact@geminorum.ir",
 
-	"rtl":false,
-	"debug":false,
-	"maximize":false,
+	"rtl": false,
+	"debug": false,
+	"maximize": false,
 
-	"root":"storage",
-    "r2oot":"C:\\Users\\user\\Dropbox\\Notes",
+	"root": "storage",
 
-	"default":"Lib\\test.md",
-	"frontMatter":false
+	"default": "example.md",
+	"frontMatter": true
 }

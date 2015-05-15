@@ -5,9 +5,9 @@ var gulp    = require('gulp'),
 	notify  = require('gulp-notify'),
 	path    = require('path');
 
-// gulp.task('default', function(){
-    // console.log('default gulp task...')
-// });
+gulp.task('default', function(){
+    console.log('default gulp task...');
+});
 
 var plumberErrorHandler = { errorHandler: notify.onError({
     title: 'Gulp',
@@ -18,13 +18,9 @@ var plumberErrorHandler = { errorHandler: notify.onError({
 gulp.task('watch', function() {
 
 	gulp.watch('./root/assets/stylesheets/**/*.*', ['compass']);
-
-	//gulp.watch('./root/assets/stylesheets/**/*.scss', ['sass']);
-  //gulp.watch('./root/assets/stylesheets/*.scss', ['sass']);
-
-  //gulp.watch('js/src/*.js', ['js']);
-
-  //gulp.watch('img/src/*.{png,jpg,gif}', ['img']);
+	// gulp.watch('./root/assets/stylesheets/**/*.scss', ['sass']);
+	// gulp.watch('js/src/*.js', ['js']);
+	// gulp.watch('img/src/*.{png,jpg,gif}', ['img']);
 
 });
 
@@ -40,16 +36,12 @@ gulp.task('compass', function() {
 });
 
 gulp.task('sass', function () {
-
 	gulp.src('./root/assets/stylesheets/style.scss')
-
 	.pipe(plumber(plumberErrorHandler))
-
 	.pipe(sass({
-      //includePaths: require('node-neat').includePaths
-      // includePaths: require('node-bourbon').with('other/path', 'another/path')
+		// includePaths: require('node-neat').includePaths
+		// includePaths: require('node-bourbon').with('other/path', 'another/path')
     }))
-
     .pipe(gulp.dest('./root/assets/css'));
 });
 
