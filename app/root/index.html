@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title>Noted! - a Markdown editor written in javascript using electron</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../config/styles.css" type="text/css" />
+
+    <script>
+    	window.$ = window.jQuery = require('./components/jquery/dist/jquery.min.js');
+    </script>
+
+</head><body id="bbooddyy">
+
+<header>
+
+    <h1>Noted!</h1>
+
+
+        <div style="f1loat: right">
+
+
+            <input id="location"></input>
+            <button id="save">save</button>
+            <button id="reload">reload</button>
+			<button id="front-matter">append</button>
+			<button id="print">print this</button>
+        </div>
+
+
+</header>
+
+<section>
+
+    <div id="tree">
+        <div id="storage">Loading...</div>
+    </div>
+    <div id="content">
+
+        <nav>
+            NAVIGATION
+        </nav>
+
+        <aside>
+            <textarea id="md-input" class="simplebox input"></textarea>
+        </aside>
+
+        <article>
+            <div id="md-output" class="output"></div>
+        </article>
+
+    </div>
+
+</section>
+
+<footer>
+    <p class="credits">
+        We are using io.js <script>document.write(process.version)</script> and Electron <script>document.write(process.versions['electron'])</script>.
+    </p>
+	<!-- https://github.com/atom/electron/blob/master/docs/api/process.md -->
+	<!-- console.log(remote.require('app').getVersion()); -->
+
+     <div id="notification"></div>
+</footer>
+
+<script src="components/jqtree/tree.jquery.js"></script>
+<script src="index.js"></script>
+
+</body></html>

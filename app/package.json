@@ -1,0 +1,38 @@
+{
+  "name": "noted",
+  "productName": "Noted!",
+  "version": "0.1.5",
+  "description": "a Markdown editor written in javascript using electron",
+  "license": "MIT",
+  "homepage": "http://noted.geminorum.ir",
+  "author": {
+    "name": "Nasser Rafie",
+    "email": "contact@geminorum.ir",
+    "url": "http://geminorum.ir"
+  },
+  "main": "main.js",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "crypto-js": "^3.1.4",
+    "js-yaml": "^3.3.0",
+    "markdown-table": "^0.4.0",
+    "marked": "^0.3.3",
+    "mdast": "^0.19.0",
+    "mdast-toc": "^0.3.0",
+    "node-dir": "^0.1.8",
+    "normalize.css": "^3.0.3",
+    "nprogress": "^0.1.6",
+    "simple-treewatch": "0.0.3",
+    "treeui": "^0.1.0",
+    "yaml-front-matter": "^3.2.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-sass": "^1.3.3",
+    "node-bourbon": "^4.2.2",
+    "node-neat": "^1.7.1-beta1"
+  },
+  "readme": "ERROR: No README data found!"
+}
