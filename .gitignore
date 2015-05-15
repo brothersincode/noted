@@ -1,5 +1,6 @@
 /app/node_modules
 /app/root/components
+/app/root/assets/.sass-cache
 
 /app/dev.md
 /app/noted.cmd

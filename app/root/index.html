@@ -16,47 +16,39 @@
 
     <h1>Noted!</h1>
 
+    <div id="toolbar">
 
-        <div style="f1loat: right">
+        <input type="text" id="location" />
 
-
-            <input id="location"></input>
-            <button id="save">save</button>
-            <button id="reload">reload</button>
-			<button id="front-matter">append</button>
-			<button id="print">print this</button>
-        </div>
-
+        <button id="save">save</button>
+        <button id="reload">reload</button>
+		<button id="front-matter">append</button>
+		<button id="print">print</button>
+    </div>
 
 </header>
 
-<section>
+<section class="flexbox">
 
-    <div id="tree">
+    <div class="col" id="tree">
         <div id="storage">Loading...</div>
     </div>
-    <div id="content">
 
-        <nav>
-            NAVIGATION
-        </nav>
+    <aside class="col" id="editor">
+        <textarea id="md-input" class="input" wrap="off"></textarea>
+    </aside>
 
-        <aside>
-            <textarea id="md-input" class="simplebox input"></textarea>
-        </aside>
-
-        <article>
-            <div id="md-output" class="output"></div>
-        </article>
-
-    </div>
+    <article class="col"  id="preview">
+        <div id="md-output" class="output"></div>
+    </article>
 
 </section>
 
 <footer>
-    <p class="credits">
+
+    <div class="credits">
         We are using io.js <script>document.write(process.version)</script> and Electron <script>document.write(process.versions['electron'])</script>.
-    </p>
+    </div>
 	<!-- https://github.com/atom/electron/blob/master/docs/api/process.md -->
 	<!-- console.log(remote.require('app').getVersion()); -->
 

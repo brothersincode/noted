@@ -1,4 +1,9 @@
+#### 0.1.6
+* new draft layout using [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* gulp-compass instead of gulp-sass
+
 #### 0.1.5
+* git init
 
 #### 0.1.4
 

@@ -1,152 +1,31 @@
-$visual-grid: true;
-$visual-grid-color: #E6F6FF;
-$visual-grid-opacity: 0.4;
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
+// The font size set on the root html element.
+$base-font-size: 16px !global;
+
+// The base line height determines the basic unit of vertical rhythm.
+$base-line-height: 24px !global;
+
+// The length unit in which to output vertical rhythm values.
+// Supported values: px, em, rem.
+$rhythm-unit: 'em' !global;
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 $ltblue: #D5EEFB;
 $midblue: #AADBF5;
 $dkblue: #41A8DF;
 $dkerblue: #298EC3;
 $textblue: #072f44;
-
-$body-font-size: 1.2em !default;
-$body-line-height: golden-ratio(1.2em, 1) !default;
-$body-font-family: $helvetica !default;
-
-// Overrides Neat's default
-//$max-width: em(1024);
-$max-width: 100%;
-
-
-
-
-
-
-
-
-// Breakpoints
-//$mobile: new-breakpoint(max-width 500px 4);
-//$visual-grid-color: lighten(#FFF0E8, 3%);
 ////////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 $pad-top:32px;
-$pad-bottom:32px;
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-html {
-    height:100%;
-}
-
-body {
-    height:100%;
-  line-height: $body-line-height;
-  //text-align: left;
-
-  &.rtl {
-      direction:rtl;
-  }
-}
-
-header {
-    //@include outer-container;
-    //@include clearfix();
-
-    position:fixed;
-    width:100%;
-    height:$pad-top;
-    top:0;
-
-
-    background-color: $dkblue;
-    padding: 0.5em 1em;
-
-    h1 {
-        line-height: $body-line-height * 0.5;
-        font-size:0.5em;
-        float:left;
-    }
-}
-
-section {
-    @include outer-container;
-
-    background-color: green;
-
-    padding-top:$pad-top;
-    padding-bottom:$pad-bottom;
-    min-height:100%;
-
-    & #tree {
-        @include span-columns(2);
-        //height:100%;
-        background-color: $midblue;
-
-        & #storage {
-            @include fill-parent;
-            //min-height:100%;
-        }
-    }
-
-    & #content {
-        @include span-columns(10);
-        height:100%;
-
-        nav {
-            @include fill-parent;
-            @include clearfix();
-
-            background-color: $dkerblue;
-        }
-
-        aside {
-          @include span-columns(5 of 10);
-
-          background-color: $midblue;
-
-          textarea.input {
-              @include fill-parent;
-
-          }
-        }
-
-        article {
-          @include span-columns(5 of 10);
-
-          background-color: $textblue;
-          div.output {
-              @include fill-parent;
-
-              //height:100%;
-              //overflow-y:scroll;
-          }
-        }
-    }
-}
-
-footer {
-    //@include outer-container;
-    //@include clearfix();
-
-    position:fixed;
-    width:100%;
-    height:$pad-bottom;
-    bottom:0;
-
-    background-color: $ltblue;
-    padding: 0.5em 1em;
-    //text-align: right;
-
-    .credits {
-        float:right;
-        line-height: $body-line-height*0.7;
-        font-size: 0.8em;
-    }
-
-    .notification {
-        text-align:left;
-        line-height: $body-line-height*0.9;
-        font-size: 0.9em;
-
-    }
-}
+$pad-bottom:22px;

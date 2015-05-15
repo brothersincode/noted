@@ -1,0 +1,44 @@
+
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+// https://css-tricks.com/fluid-width-equal-height-columns/
+// http://tutorialzine.com/2014/10/easiest-way-equal-height-sidebar/
+
+
+.flexbox {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+
+  //height:100%;
+  //position:relative;
+  //z-index:-100;
+
+  body.rtl & {
+      //flex-direction: row-reverse;
+  }
+
+  .col {
+      flex: 1;
+    }
+
+    #tree.col {
+      background: $midblue;
+      order: 0;
+      //width:260px;
+      flex-shrink:0;
+    }
+
+    #editor.col {
+      //background: #eee;
+      order: 1;
+      flex-grow:2;
+    }
+
+    #preview.col {
+      background: $ltblue;
+      flex-grow:2;
+      order: 2;
+    }
+
+}

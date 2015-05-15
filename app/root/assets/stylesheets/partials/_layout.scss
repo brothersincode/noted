@@ -1,113 +1,83 @@
 
-section {
-    //height: 100%; // http://stackoverflow.com/a/27016181/4864081
-
-    // http://stackoverflow.com/a/26388121/4864081
-
-  @include outer-container;
-  text-align: center;
-  margin-bottom: 3em;
-
-  &.second {
-    div {
-      height: 20em;
-
-      &#alpha {
-        @include span-columns(4);
-      }
-
-      &#beta {
-        padding: 0;
-        line-height: $body-line-height*2;
-        text-align: center;
-        @include span-columns(8);
-
-        aside {
-          @include span-columns(4 of 8);
-          border: none;
-          height: 84%;
-          padding: 1em;
-        }
-
-        article {
-          @include span-columns(4 of 8);
-          height: 84%;
-          padding: 1em;
-        }
-      }
-    }
-
-    //@include direction-context(right-to-left) {}
-  }
-
-  &.third {
-    div#dummy {
-      border-bottom: 0;
-      height: 5.5em;
-      text-align: center;
-    }
-
-    div#alpha {
-      @include fill-parent();
-      @include row(table);
-      margin-bottom: 0;
-      padding: 0;
-
-      aside {
-        @include span-columns(4);
-        @include pad();
-        border-right: 1px solid rgba(255,255,255, 0.5);
-        body.rtl & {
-            border-right:none;
-            border-left: 1px solid rgba(255,255,255, 0.5);
-
-        }
-
-      }
-
-      article {
-        height: 20em;
-        @include span-columns(8);
-        @include reset-display;
-        @include pad();
-      }
-
-      body.rtl & {
-          @include row(table, RTL);
-      }
-    }
-  }
-
-  &.fourth {
-    div.one-column {
-      @include span-columns(1);
-
-      &.last {
-        @include omega();
-      }
-    }
-
-    div#alpha {
-      @include span-columns(6);
-      @include shift(3);
-      height: 20em;
-      text-align: center;
-    }
-  }
-
-  &.fifth {
-    div.box {
-      font-size: 0.78em;
-      height: 8em;
-      // margin-top: 2em;
-      @include span-columns(3);
-      @include omega(4n);
-    }
-  }
+html, body {
+    height: 100%;
 }
 
-div.code {
-  @include outer-container();
-  padding:0.5em;
-  text-align: center;
+html {}
+
+body {
+
+    color:$textblue;
+
+    &.rtl {
+        direction: rtl;
+    }
+}
+
+header {
+    //@include outer-container;
+    //@include clearfix();
+
+    position:fixed;
+    width:100%;
+    height:$pad-top;
+    top:0;
+    z-index:100;
+
+
+    background-color: $dkblue;
+    //padding: 0.5em 1em;
+
+    h1 {
+        line-height: $base-line-height * 0.5;
+        font-size:1em;
+        float:left;
+        margin:12px 0px 20px 10px;
+    }
+
+    #toolbar {
+        margin:4px 6px 0px 0px;
+        float:right;
+        button {
+            line-height: $base-line-height * 0.7;
+        }
+    }
+
+
+}
+
+section {
+    //background-color: green;
+
+    padding-top:$pad-top;
+    padding-bottom:$pad-bottom;
+    //min-height:100%;
+}
+
+footer {
+    //@include outer-container;
+    //@include clearfix();
+
+    position:fixed;
+    width:100%;
+    height:$pad-bottom;
+    bottom:0;
+    z-index:100;
+
+    background-color: $ltblue;
+    //padding: 0.5em 1em;
+    //text-align: right;
+
+    .credits {
+        float:right;
+        line-height: $base-line-height*0.7;
+        font-size: 0.8em;
+    }
+
+    .notification {
+        text-align:left;
+        line-height: $base-line-height*0.9;
+        font-size: 0.9em;
+
+    }
 }
