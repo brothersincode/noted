@@ -220,9 +220,11 @@ var notedRenderer = function(){
 		this.config = config;
 		this.debug = config.debug||false;
 
-		app.rtl(config.rtl||false);
-
-		//app.log(config);
+		app
+			.rtl(config.rtl||false)
+			// .log(config)
+			// .initDev()
+			;
 
 		this.rootPath = path.resolve( __dirname, '../..', config.root||'storage' );
 
@@ -488,7 +490,6 @@ var notedRenderer = function(){
 		return this;
 	};
 
-
 	// https://github.com/tmcw/treeui
 	this.treeui = function(){
 
@@ -502,6 +503,24 @@ var notedRenderer = function(){
 	this.request = function(tree, callback){
 		app.log(tree).log(callback);
 		callback(null, [1 + tree, 2 + tree, 3 + tree]);
+		return this;
+	};
+
+	this.initDev = function(){
+		if ( !this.debug )
+			return this;
+
+		// BUG
+		// http://stackoverflow.com/a/13721261/4864081
+		var links = document.getElementsByTagName("link");
+		for (var x in links) {
+		    var link = links[x];
+
+		    if (link.getAttribute("rel").indexOf("stylesheet") > -1) {
+		        link.href = link.href + "?id=" + new Date().getMilliseconds();
+		    }
+		}
+
 		return this;
 	};
 

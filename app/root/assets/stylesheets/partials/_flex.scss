@@ -10,16 +10,20 @@
   display: flex;
   overflow: hidden;
 
-  //height:100%;
-  //position:relative;
-  //z-index:-100;
+  box-sizing: border-box;
+  // box-orient: horizontal;
+
+  height:100%;
+  // position:relative;
+  // z-index:-100;
 
   body.rtl & {
-      //flex-direction: row-reverse;
+    //   flex-direction: row-reverse;
   }
 
   .col {
       flex: 1;
+
     }
 
     #tree.col {

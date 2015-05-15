@@ -2,10 +2,12 @@
 
 @import "modules/all";
 @import "partials/base";
+
 @import "vendor/normalize";
-@import "partials/layout";
-@import "partials/flex";
-@import "partials/editor";
+@import "../../components/jqtree/jqtree.css";
 @import "partials/nprogress";
 
-@import "../../components/jqtree/jqtree.css";
+@import "partials/layout";
+@import "partials/flex";
+@import "partials/tree";
+@import "partials/editor";
