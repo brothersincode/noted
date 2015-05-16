@@ -1,12 +1,11 @@
 
-html, body {
+html {
+    @include natural-box();
     height: 100%;
 }
 
-html {}
-
 body {
-
+    height: 100%;
     color:$textblue;
 
     &.rtl {
@@ -36,7 +35,7 @@ header {
     }
 
     #toolbar {
-        margin:4px 6px 0px 0px;
+        margin:4px 36px 0px 0px;
         float:right;
         button {
             line-height: $base-line-height * 0.7;

@@ -4,10 +4,13 @@
 @import "partials/base";
 
 @import "vendor/normalize";
-@import "../../components/jqtree/jqtree.css";
+//@import "../../components/jqtree/jqtree.css";
+@import "vendor/jqtree";
 @import "partials/nprogress";
 
 @import "partials/layout";
+@import "partials/scroll";
 @import "partials/flex";
 @import "partials/tree";
 @import "partials/editor";
+@import "partials/preview";

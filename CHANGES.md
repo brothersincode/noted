@@ -1,3 +1,10 @@
+#### 0.1.7
+* cleanup
+* scrolbars
+* full height
+* tree style
+* custom styles
+
 #### 0.1.6
 * new draft layout using [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 * gulp-compass instead of gulp-sass

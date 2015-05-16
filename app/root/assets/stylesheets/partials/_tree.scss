@@ -1,7 +1,10 @@
 
 #tree {
-
+    height:100%;
     #storage {
+
+        height:100%;
+        overflow: scroll;
 
         > ul {
             margin:0;

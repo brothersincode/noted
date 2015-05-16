@@ -7,8 +7,8 @@ var remote = require('remote') // https://github.com/atom/electron/blob/master/d
 	yamlFront = require('yaml-front-matter'), // https://github.com/dworthen/js-yaml-front-matter
 
 
-	shell  = require('shell'), // https://github.com/atom/electron/blob/master/docs/api/shell.md
-	ipc    = require('ipc'); // https://github.com/atom/electron/blob/master/docs/api/ipc-renderer.md
+	shell     = require('shell'), // https://github.com/atom/electron/blob/master/docs/api/shell.md
+	ipc       = require('ipc'); // https://github.com/atom/electron/blob/master/docs/api/ipc-renderer.md
 
 
 var win      = remote.getCurrentWindow(),
@@ -78,7 +78,6 @@ var notedRenderer = function(){
 		};
 		return this;
 	}
-
 
 	this.ce = function(_, k) {
 		var elem = document.createElement(_);
@@ -223,7 +222,7 @@ var notedRenderer = function(){
 		app
 			.rtl(config.rtl||false)
 			// .log(config)
-			// .initDev()
+			.initDev()
 			;
 
 		this.rootPath = path.resolve( __dirname, '../..', config.root||'storage' );
@@ -264,6 +263,10 @@ var notedRenderer = function(){
 
 		app.$('reload').onclick = function() {
 			app.fetch(app.$('location').value);
+		};
+
+		app.$('reload-styles').onclick = function() {
+			app.reloadStyles();
 		};
 
 		app.$('front-matter').onclick = function() {
@@ -321,7 +324,8 @@ var notedRenderer = function(){
 			return false;
 		};
 
-		document.onclick = function(e) {
+		//document.onclick = function(e) {
+		app.$('md-output').onclick = function(e) {
 			e.preventDefault();
 			if (e.target.tagName == 'A')
 				shell.openExternal(e.target.href);
@@ -441,8 +445,22 @@ var notedRenderer = function(){
 		this.data = data;
 
 		$('#storage').tree({
-			data: this.data.children
-			//closedIcon: '+'
+			data: this.data.children,
+			dragAndDrop: true,
+			//closedIcon: '+',
+			closedIcon: $('&lt;i class="fa fa-arrow-circle-right"&gt;&lt;/i&gt;'),
+    		openedIcon: $('&lt;i class="fa fa-arrow-circle-down"&gt;&lt;/i&gt;'),
+
+			// https://mbraak.github.io/jqTree/examples/06_autoescape.html
+
+			// https://mbraak.github.io/jqTree/examples/09_custom_html.html
+			o1nCreateLi: function(node, $li) {
+	            // Append a link to the jqtree-element div.
+	            // The link has an url '#node-[id]' and a data property 'node-id'.
+	            $li.find('.jqtree-element').append(
+	                '<a href="#node-'+ node.id +'" class="edit" data-node-id="'+ node.id +'">edit</a>'
+	            );
+	        }
 		});
 
 		app.log('Renderer Trigged: noted.dir()');
@@ -507,19 +525,51 @@ var notedRenderer = function(){
 	};
 
 	this.initDev = function(){
-		if ( !this.debug )
-			return this;
+		//if ( !this.debug )
+			//return this;
+
+		return this;
+	};
+
+	this.reloadStyles = function(){
+		//if ( !this.debug )
+			//return this;
 
 		// BUG
 		// http://stackoverflow.com/a/13721261/4864081
-		var links = document.getElementsByTagName("link");
-		for (var x in links) {
-		    var link = links[x];
+		// var links = document.getElementsByTagName("link");
+		// for (var x in links) {
+		//     var link = links[x];
+		//
+		//     if (link.getAttribute("rel").indexOf("stylesheet") > -1) {
+		//         link.href = link.href + "?id=" + new Date().getMilliseconds();
+		//     }
+		// }
 
-		    if (link.getAttribute("rel").indexOf("stylesheet") > -1) {
-		        link.href = link.href + "?id=" + new Date().getMilliseconds();
-		    }
+		// var links = document.getElementsByTagName("link");
+		// for (var i = 0; i < links.length;i++) {
+		// 	var link = links[i];
+		// 	if (link.rel === "stylesheet") {
+		// 		link.href += "?id=" + new Date().getMilliseconds();
+		// 	}
+		// }
+
+		// http://stackoverflow.com/a/25605372/4864081
+		var toAppend = "id=" + (new Date()).getTime();
+		var links = document.getElementsByTagName("link");
+		for (var i = 0; i < links.length;i++) {
+			var link = links[i];
+			if (link.rel === "stylesheet") {
+				if (link.href.indexOf("?") === -1) {
+					link.href += "?" + toAppend;
+				} else {
+					if (link.href.indexOf("id") === -1) {
+						link.href += "&" + toAppend; } else {
+							link.href = link.href.replace(/id=\d{13}/, toAppend)}
+				};
+			}
 		}
+
 
 		return this;
 	};

@@ -4,7 +4,6 @@
  * and $rhythm-unit variables. Also, correct text resizing oddly in IE 6/7 when
  * body `font-size` is set using `em` units.
  */
-@import url(../../components/jqtree/jqtree.css);
 html {
   font-size: 100%;
   line-height: 1.5em;
@@ -543,6 +542,120 @@ th {
   padding: 0;
 }
 
+ul.jqtree-tree, ul.jqtree-tree ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul.jqtree-tree, ul.jqtree-tree ul.jqtree_common {
+  list-style: none outside;
+  margin-bottom: 0;
+  display: block;
+  margin-left: 12px;
+  margin-right: 0;
+  padding: 0;
+}
+ul.jqtree-tree li.jqtree-closed > ul.jqtree_common {
+  display: none;
+}
+ul.jqtree-tree li.jqtree_common {
+  clear: both;
+  list-style-type: none;
+}
+ul.jqtree-tree .jqtree-toggler {
+  border-bottom: none;
+  color: #333;
+  text-decoration: none;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+ul.jqtree-tree .jqtree-toggler:hover {
+  color: #000;
+  text-decoration: none;
+}
+ul.jqtree-tree .jqtree-element {
+  cursor: pointer;
+}
+ul.jqtree-tree .jqtree-title {
+  color: #1C4257;
+  vertical-align: middle;
+  margin-left: 1.5em;
+}
+ul.jqtree-tree .jqtree-title.jqtree-title-folder {
+  margin-left: 0;
+}
+ul.jqtree-tree li.jqtree-folder {
+  margin-bottom: 4px;
+}
+ul.jqtree-tree li.jqtree-folder.jqtree-closed {
+  margin-bottom: 1px;
+}
+ul.jqtree-tree .jqtree-toggler.jqtree-closed {
+  background-position: 0 0;
+}
+ul.jqtree-tree span.jqtree-dragging {
+  color: #fff;
+  background: #000;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 2px 8px;
+}
+ul.jqtree-tree li.jqtree-ghost {
+  position: relative;
+  z-index: 10;
+  margin-right: 10px;
+}
+ul.jqtree-tree li.jqtree-ghost span {
+  display: block;
+}
+ul.jqtree-tree li.jqtree-ghost span.jqtree-circle {
+  border: solid 2px #0000ff;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  top: -4px;
+  left: -6px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ul.jqtree-tree li.jqtree-ghost span.jqtree-line {
+  background-color: #0000ff;
+  height: 2px;
+  padding: 0;
+  position: absolute;
+  top: -1px;
+  left: 2px;
+  width: 100%;
+}
+ul.jqtree-tree li.jqtree-ghost.jqtree-inside {
+  margin-left: 48px;
+}
+ul.jqtree-tree span.jqtree-border {
+  position: absolute;
+  display: block;
+  left: -2px;
+  top: 0;
+  border: solid 2px #0000ff;
+  border-radius: 6px;
+  margin: 0;
+  box-sizing: content-box;
+}
+ul.jqtree-tree .jqtree-element {
+  position: relative;
+}
+ul.jqtree-tree li.jqtree-selected > .jqtree-element,
+ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover {
+  background-color: #41A8DF;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+ul.jqtree-tree .jqtree-moving > .jqtree-element .jqtree-title {
+  outline: dashed 1px #0000ff;
+}
+
 #nprogress {
   pointer-events: none;
 }
@@ -616,11 +729,16 @@ th {
     transform: rotate(360deg);
   }
 }
-html, body {
+html {
+  box-sizing: border-box;
   height: 100%;
+}
+html *, html *:before, html *:after {
+  box-sizing: inherit;
 }
 
 body {
+  height: 100%;
   color: #072f44;
 }
 body.rtl {
@@ -642,7 +760,7 @@ header h1 {
   margin: 12px 0px 20px 10px;
 }
 header #toolbar {
-  margin: 4px 6px 0px 0px;
+  margin: 4px 36px 0px 0px;
   float: right;
 }
 header #toolbar button {
@@ -673,16 +791,36 @@ footer .notification {
   font-size: 0.9em;
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px #D5EEFB;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D5EEFB;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #D5EEFB;
+}
+
 .flexbox {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   overflow: hidden;
-  box-sizing: border-box;
   height: 100%;
 }
 .flexbox .col {
   flex: 1;
+  height: 100%;
 }
 .flexbox #tree.col {
   background: #AADBF5;
@@ -699,6 +837,13 @@ footer .notification {
   order: 2;
 }
 
+#tree {
+  height: 100%;
+}
+#tree #storage {
+  height: 100%;
+  overflow: scroll;
+}
 #tree #storage > ul {
   margin: 0;
 }
@@ -713,8 +858,17 @@ footer .notification {
   outline: none;
   box-shadow: none;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+#preview {
+  height: 100%;
+}
+#preview > .output {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
 }

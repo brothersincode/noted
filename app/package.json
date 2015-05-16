@@ -1,10 +1,10 @@
 {
   "name": "noted",
   "productName": "Noted!",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "a Markdown editor written in javascript using electron",
   "license": "MIT",
-  "homepage": "http://noted.geminorum.ir",
+  "homepage": "https://github.com/brothersincode/noted",
   "author": {
     "name": "Nasser Rafie",
     "email": "contact@geminorum.ir",

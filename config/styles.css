@@ -9,6 +9,22 @@ body {
 
 }
 
-.output {
-    
+#tree #storage {
+    font-size:0.79em;
+}
+
+#editor textarea {
+    padding:8px 6px 0 6px;
+    font-size:0.87em;
+    word-wrap: break-word;
+}
+
+#preview > .output {
+    padding:0 12px 0 12px;
+    font-size:0.87em;
+    word-wrap: break-word;
+}
+
+#preview > .output ul {
+    padding-left:15px;
 }

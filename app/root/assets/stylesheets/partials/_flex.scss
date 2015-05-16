@@ -1,4 +1,8 @@
 
+// SEE: http://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
+
+// SEE : https://css-tricks.com/boxes-fill-height-dont-squish/
+
 // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 // https://css-tricks.com/fluid-width-equal-height-columns/
 // http://tutorialzine.com/2014/10/easiest-way-equal-height-sidebar/
@@ -10,7 +14,7 @@
   display: flex;
   overflow: hidden;
 
-  box-sizing: border-box;
+  //box-sizing: border-box;
   // box-orient: horizontal;
 
   height:100%;
@@ -23,6 +27,8 @@
 
   .col {
       flex: 1;
+      height:100%;
+
 
     }
 
