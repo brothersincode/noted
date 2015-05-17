@@ -21,17 +21,40 @@
     }
 }
 
+// @import "compass/css3";
+//
+// [Sass Mobile First Breakpoint Mixin](http://codepen.io/scottnix/pen/Hidvz)
+// EXAMPLE :
+// 			 @include break-point(medium) {}
+// 			 @include break-point(large) {}
+// 			 @include break-point(15em) {}
+//
+@mixin break-point($point) {
+    @if $point == medium {
+        @media (min-width: 30em)  { @content; }
+    }
+    @else if $point == large {
+        @media (min-width: 50em) { @content; }
+    }
+    @else if $point { // allows custom breakpoints
+        @media (min-width: $point) { @content; }
+    }
+}
+
+
 // http://www.stefanwienert.de/blog/2012/05/18/easy-css-vendor-prefix-mixin-for-sass/
 // Easy css vendor prefix mixin for SASS
 // May 18, 2012
 //p { @include vendor-prefix(hyphens, auto)}
 
 @mixin vendor-prefix($name, $argument) {
+
   -webkit-#{$name}: #{$argument};
   -ms-#{$name}: #{$argument};
   -moz-#{$name}: #{$argument};
   -o-#{$name}: #{$argument};
   #{$name}: #{$argument};
+
 }
 
 // https://github.com/thoughtbot/neat/blob/master/app/assets/stylesheets/grid/_fill-parent.scss

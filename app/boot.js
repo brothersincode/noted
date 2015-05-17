@@ -1,6 +1,7 @@
 
 var remote = require('remote') // https://github.com/atom/electron/blob/master/docs/api/remote.md
 
+	__        = require('underscore'),
 	NProg     = require('nprogress'), //http://tutorialzine.com/2013/09/quick-tip-progress-bar/
 	treeui    = require('treeui'), // https://github.com/tmcw/treeui
 	yaml      = require('js-yaml'), // https://github.com/nodeca/js-yaml
@@ -276,11 +277,13 @@ var notedRenderer = function(){
 				app.frontMatter('email', app.config.email);
 		};
 
-		app.$('md-input').onkeyup = function() {
-			app
-				//.log('Renderer Trigged: input.onkeyup')
-				.md();
-		};
+		// app.$('md-input').onkeyup = function() {
+		// 	app
+		// 		//.log('Renderer Trigged: input.onkeyup')
+		// 		.md();
+		// };
+
+		app.$('md-input').onkeyup = __.debounce(app.md, 300); // http://underscorejs.org/#debounce
 
 		app.$('print').onclick = function() {
 			app
@@ -448,8 +451,8 @@ var notedRenderer = function(){
 			data: this.data.children,
 			dragAndDrop: true,
 			//closedIcon: '+',
-			closedIcon: $('&lt;i class="fa fa-arrow-circle-right"&gt;&lt;/i&gt;'),
-    		openedIcon: $('&lt;i class="fa fa-arrow-circle-down"&gt;&lt;/i&gt;'),
+			//closedIcon: $('&lt;i class="fa fa-arrow-circle-right"&gt;&lt;/i&gt;'),
+    		//openedIcon: $('&lt;i class="fa fa-arrow-circle-down"&gt;&lt;/i&gt;'),
 
 			// https://mbraak.github.io/jqTree/examples/06_autoescape.html
 

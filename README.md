@@ -1,5 +1,7 @@
 #Noted!
-a Markdown editor written in [javascript](https://iojs.org/) using [electron](http://electron.atom.io).
+a Markdown manager and editor written in [javascript](https://iojs.org/) using [electron](http://electron.atom.io).
+
+Noted! is trying to do what [Picasa](https://picasa.google.com/) does for your images, or [Clementine](https://www.clementine-player.org/) for your musics.
 
 Not recommended yet, this is an early alpha version.
 
