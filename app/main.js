@@ -443,7 +443,7 @@ var notedMain = function(){
 		// var stats = fs.lstatSync(root),
 		var info = {
 			path: root,
-			// id: 'tree-'+path.basename(root),
+			id: 'tree-'+path.basename(root),
 			label: path.basename(root)
 		};
 

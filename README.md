@@ -8,8 +8,9 @@ Not recommended yet, this is an early alpha version.
 see [CHANGES.md](CHANGES.md)
 
 ####Testing
-1. put electron [binaries](https://github.com/atom/electron/releases/latest) in `noted/electron`
-2. `cd app`
-3. `npm install`
-4. `bower install`
-5. run!
+1. `git clone git://github.com/brothersincode/noted Noted`
+2. download and put electron [binaries](https://github.com/atom/electron/releases/latest) in `Noted/electron`
+3. `cd app`
+4. `npm install`
+5. `bower install`
+6. run!

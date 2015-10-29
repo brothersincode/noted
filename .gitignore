@@ -1,4 +1,5 @@
 /app/node_modules
+/app/temp
 /app/root/components
 /app/root/assets/.sass-cache
 
