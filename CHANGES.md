@@ -1,3 +1,7 @@
+#### 0.1.8
+* [debounced](http://underscorejs.org/#debounce) rendering of the markdown
+* dev dependencies for sass removed
+
 #### 0.1.7
 * cleanup
 * scrolbars
