@@ -22,8 +22,8 @@ var win      = remote.getCurrentWindow(),
 	MenuItem = remote.require('menu-item'),
 	BrowserWindow = remote.require('browser-window'),
 
-	//toc    = remote.require('mdast-toc'), // https://github.com/wooorm/mdast-toc
-	marked   = remote.require('marked');
+	// toc    = remote.require('mdast-toc'), // https://github.com/wooorm/mdast-toc
+	marked   = remote.require('marked'); // https://github.com/chjj/marked
 
 var notedRenderer = function(){
 	var app = this;
@@ -38,8 +38,8 @@ var notedRenderer = function(){
 	this.fileData    = null;
 	this.fileFrontMatter  = {};
 
-	this.$ = function(id){
-		return document.getElementById(id);
+	this.$ = function(id, scope){
+		return (scope || document).getElementById(id);
 	};
 
 	// https://github.com/atom/electron/blob/master/docs/tutorial/desktop-environment-integration.md#progress-bar-in-taskbar-windows--unity
@@ -74,7 +74,7 @@ var notedRenderer = function(){
 
 	this.rC = function(ele,cls) {
 		if (app.hC(ele,cls)) {
-	    	var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+			var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
 			app.$(ele).className=app.$(ele).className.replace(reg,' ');
 		};
 		return this;
@@ -211,9 +211,6 @@ var notedRenderer = function(){
 			app.treeMenu.popup(win);
 
 		});
-
-
-
 	};
 
 	this.init = function(config) {
@@ -335,6 +332,17 @@ var notedRenderer = function(){
 			return false;
 		};
 
+		marked.setOptions({
+			renderer: new marked.Renderer(),
+			gfm: true,
+			tables: true,
+			breaks: false,
+			pedantic: false,
+			sanitize: false,
+			smartLists: true,
+			smartypants: false
+		});
+
 		return this;
 	};
 
@@ -371,6 +379,7 @@ var notedRenderer = function(){
 	};
 
 	this.load = function(container) {
+
 		if ( container === undefined )
 			container = 'md-input';
 		else if ( container == null )
@@ -393,10 +402,11 @@ var notedRenderer = function(){
 			this.fileFrontMatter = frontMatter;
 			app.log(this.fileFrontMatter);
 		}
+
 		return this;
 	};
 
-	// NOT IMPLEMENTED YET!
+	// FIXME: NOT IMPLEMENTED YET!
 	this.newTab = function(){
 		this.tabActive = null;
 		return 'md-input';
@@ -407,11 +417,12 @@ var notedRenderer = function(){
 			var content = '';
 
 			// var frontMatter = '---\npost: title one\n';
-				// input += 'anArray:\n - one\n - two\n';
-				// input += 'subObject:\n prop1: cool\n prop2: two';
-				// input += '\nreg: !!js/regexp /pattern/gim';
-				// input += '\nfun: !!js/function function() {  }\n---\n';
-				// input += 'content\nmore';
+			// input += 'anArray:\n - one\n - two\n';
+			// input += 'subObject:\n prop1: cool\n prop2: two';
+			// input += '\nreg: !!js/regexp /pattern/gim';
+			// input += '\nfun: !!js/function function() {  }\n---\n';
+			// input += 'content\nmore';
+
 			if ( this.fileFrontMatter.length != 0 ) {
 				content += '---\n';
 				content += yaml.safeDump(this.fileFrontMatter);
@@ -452,18 +463,18 @@ var notedRenderer = function(){
 			dragAndDrop: true,
 			//closedIcon: '+',
 			//closedIcon: $('&lt;i class="fa fa-arrow-circle-right"&gt;&lt;/i&gt;'),
-    		//openedIcon: $('&lt;i class="fa fa-arrow-circle-down"&gt;&lt;/i&gt;'),
+			//openedIcon: $('&lt;i class="fa fa-arrow-circle-down"&gt;&lt;/i&gt;'),
 
 			// https://mbraak.github.io/jqTree/examples/06_autoescape.html
 
 			// https://mbraak.github.io/jqTree/examples/09_custom_html.html
 			o1nCreateLi: function(node, $li) {
-	            // Append a link to the jqtree-element div.
-	            // The link has an url '#node-[id]' and a data property 'node-id'.
-	            $li.find('.jqtree-element').append(
-	                '<a href="#node-'+ node.id +'" class="edit" data-node-id="'+ node.id +'">edit</a>'
-	            );
-	        }
+				// Append a link to the jqtree-element div.
+				// The link has an url '#node-[id]' and a data property 'node-id'.
+				$li.find('.jqtree-element').append(
+					'<a href="#node-'+ node.id +'" class="edit" data-node-id="'+ node.id +'">edit</a>'
+				);
+			}
 		});
 
 		app.log('Renderer Trigged: noted.dir()');

@@ -6,12 +6,12 @@ var gulp    = require('gulp'),
 	path    = require('path');
 
 gulp.task('default', function(){
-    console.log('default gulp task...');
+	console.log('default gulp task...');
 });
 
 var plumberErrorHandler = { errorHandler: notify.onError({
-    title: 'Gulp',
-    message: 'Error: <%= error.message %>'
+	title: 'Gulp',
+	message: 'Error: <%= error.message %>'
   })
 };
 
@@ -27,12 +27,12 @@ gulp.task('watch', function() {
 gulp.task('compass', function() {
   gulp.src('./root/assets/stylesheets/*.scss')
 	.pipe(plumber(plumberErrorHandler))
-    .pipe(compass({
-      project: path.join(__dirname, 'root/assets'),
-      css: 'css',
-      sass: 'stylesheets'
-    }))
-    .pipe(gulp.dest('./root/assets/css'));
+	.pipe(compass({
+	  project: path.join(__dirname, 'root/assets'),
+	  css: 'css',
+	  sass: 'stylesheets'
+	}))
+	.pipe(gulp.dest('./root/assets/css'));
 });
 
 // gulp.task('sass', function () {

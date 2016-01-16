@@ -1,7 +1,7 @@
 {
   "name": "noted",
   "productName": "Noted!",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "a Markdown editor written in javascript using electron",
   "license": "MIT",
   "homepage": "https://github.com/brothersincode/noted",
@@ -19,6 +19,7 @@
     "marked": "^0.3.3",
     "mdast": "^0.19.0",
     "mdast-toc": "^0.3.0",
+    "mhtml": "^0.1.2",
     "node-dir": "^0.1.8",
     "normalize.css": "^3.0.3",
     "nprogress": "^0.1.6",

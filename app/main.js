@@ -2,15 +2,16 @@
 // https://github.com/atom/electron/tree/master/docs
 // https://github.com/atom/electron/blob/master/docs/tutorial/quick-start.md
 
-var app  = require('app' ), // Module to control application life.
-	ipc  = require('ipc' ), // https://github.com/atom/electron/blob/master/docs/api/ipc-main-process.md
+var app  = require('app'), // Module to control application life.
+	ipc  = require('ipc'), // https://github.com/atom/electron/blob/master/docs/api/ipc-main-process.md
 
 	path = require('path'), // https://nodejs.org/api/path.html
-	fs   = require('fs'  ),
+	fs   = require('fs'),
 	util = require('util'),
 
-	//dir  = require('node-dir'), // https://github.com/fshost/node-dir
+	// dir  = require('node-dir'), // https://github.com/fshost/node-dir
 	Watch = require('simple-treewatch'), // https://github.com/csabiftw/node-simple-treewatch
+	mHTML = require('mhtml'), // https://github.com/balaclark/node-mhtml
 
 
 	Tray          = require('tray'),
@@ -164,15 +165,15 @@ var notedMain = function(){
 		this.electron = electron;
 		this.screen = require('screen');
 
-		try{
-			this.config = JSON.parse( fs.readFileSync( path.resolve( __base,'../config','config.json' ), 'utf-8') );
-		 }catch(e){
+		try {
+			this.config = JSON.parse( fs.readFileSync( path.resolve( __base,'../config','config.json' ), 'utf-8' ) );
+		} catch(e) {
 			this.config = {};
 			app.log('Main Error: Cannot parse config.json');
 		};
 
 		// https://github.com/atom/electron/blob/master/docs/tutorial/debugging-main-process.md
-		this.debug = this.config.debug||'development' == process.env.NODE_ENV||false;
+		this.debug = this.config.debug || 'development' == process.env.NODE_ENV || false;
 
 		app
 			.initStorage(this.config)
@@ -386,7 +387,7 @@ var notedMain = function(){
 			});
 			this.winAbout.setSkipTaskbar(true);
 			this.winAbout.center();
-			this.winAbout.loadUrl('http://noted.geminorum.ir');
+			this.winAbout.loadUrl('http://noted.geminorum.ir/about');
 
 
 		return this;
@@ -454,7 +455,7 @@ var notedMain = function(){
 			});
 		}  else if ( ring.isFile() ) {
 			info.type = 'file';
-        } else if ( ring.isSymbolicLink() ){
+		} else if ( ring.isSymbolicLink() ){
 			info.type = 'link';
 		} else {
 			info.type = 'unknown';
@@ -462,6 +463,17 @@ var notedMain = function(){
 
 		return info;
 	};
+
+	// FIXME: DRAFT
+	// https://github.com/balaclark/node-mhtml
+	this.mhtml = function() {
+
+		mhtml.extract('path/to/file.mhtml', 'path/to/destination', function (err) {
+			console.log('done.');
+		});
+
+		return this;
+	}
 
 	return this;
 };
@@ -486,8 +498,8 @@ app.on('ready', function() {
 		// .inspect( noted.dirTree( path.resolve(__dirname, '../', 'storage' ) ) );
 
 	// node dirTree.js ~/foo/bar
-    // var util = require('util');
-    // console.log(util.inspect(noted.dirTree(process.argv[2]), false, null));
+	// var util = require('util');
+	// console.log(util.inspect(noted.dirTree(process.argv[2]), false, null));
 });
 
 var noted = new notedMain();

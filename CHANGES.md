@@ -1,3 +1,6 @@
+#### 0.1.9
+* project maintenance
+
 #### 0.1.8
 * [debounced](http://underscorejs.org/#debounce) rendering of the markdown
 * dev dependencies for sass removed

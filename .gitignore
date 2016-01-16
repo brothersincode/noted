@@ -1,5 +1,9 @@
-/app/node_modules
+.idea
+.imdone
+
+/app/.gulp
 /app/temp
+/app/node_modules
 /app/root/components
 /app/root/assets/.sass-cache
 
@@ -11,5 +15,4 @@
 /storage/*
 !/storage/example.md
 
-.DS_Store
-Thumbs.db
+noted.lnk
