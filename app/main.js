@@ -90,7 +90,7 @@ var notedMain = function(){
 		});
 
 		return this;
-	}
+	};
 
 	this.initStorage = function(config){
 		var storage = config.root || path.join(__base, '../storage');
@@ -170,7 +170,7 @@ var notedMain = function(){
 		} catch(e) {
 			this.config = {};
 			app.log('Main Error: Cannot parse config.json');
-		};
+		}
 
 		// https://github.com/atom/electron/blob/master/docs/tutorial/debugging-main-process.md
 		this.debug = this.config.debug || 'development' == process.env.NODE_ENV || false;
@@ -459,7 +459,7 @@ var notedMain = function(){
 			info.type = 'link';
 		} else {
 			info.type = 'unknown';
-		};
+		}
 
 		return info;
 	};
@@ -473,7 +473,7 @@ var notedMain = function(){
 		});
 
 		return this;
-	}
+	};
 
 	return this;
 };

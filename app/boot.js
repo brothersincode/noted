@@ -1,7 +1,8 @@
 
-var remote = require('remote') // https://github.com/atom/electron/blob/master/docs/api/remote.md
+var remote = require('remote'), // https://github.com/atom/electron/blob/master/docs/api/remote.md
 
 	__        = require('underscore'),
+	i18n      = require('i18n'), // https://github.com/mashpie/i18n-node
 	NProg     = require('nprogress'), //http://tutorialzine.com/2013/09/quick-tip-progress-bar/
 	treeui    = require('treeui'), // https://github.com/tmcw/treeui
 	yaml      = require('js-yaml'), // https://github.com/nodeca/js-yaml
@@ -27,16 +28,17 @@ var win      = remote.getCurrentWindow(),
 
 var notedRenderer = function(){
 	var app = this;
-	this.config = null;
-	this.absPath = null;
-	this.file = null;
-	this.debug = null;
 
-	this.treeMenu    = null;
-	this.nodeClicked = null;
-	this.tabActive   = null;
-	this.fileData    = null;
-	this.fileFrontMatter  = {};
+    this.config  = null;
+    this.absPath = null;
+    this.file    = null;
+    this.debug   = null;
+
+    this.treeMenu        = null;
+    this.nodeClicked     = null;
+    this.tabActive       = null;
+    this.fileData        = null;
+    this.fileFrontMatter = {};
 
 	this.$ = function(id, scope){
 		return (scope || document).getElementById(id);
@@ -65,20 +67,22 @@ var notedRenderer = function(){
 
 	this.hC = function (ele,cls) {
 		return app.$(ele).className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
-	}
+	};
 
 	this.aC = function(ele,cls) {
 		if (!app.hC(ele,cls)) app.$(ele).className += " "+cls;
 		return this;
-	}
+	};
 
 	this.rC = function(ele,cls) {
+
 		if (app.hC(ele,cls)) {
 			var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
 			app.$(ele).className=app.$(ele).className.replace(reg,' ');
-		};
+		}
+
 		return this;
-	}
+	};
 
 	this.ce = function(_, k) {
 		var elem = document.createElement(_);
@@ -214,14 +218,21 @@ var notedRenderer = function(){
 	};
 
 	this.init = function(config) {
-		this.config = config;
-		this.debug = config.debug||false;
+
+        this.config = config;
+        this.debug  = config.debug||false;
 
 		app
 			.rtl(config.rtl||false)
 			// .log(config)
 			.initDev()
 			;
+
+		i18n.configure({
+	    	locales:['en', 'fa'],
+			defaultLocale: 'en',
+	    	directory: __dirname + '/locales'
+		});
 
 		this.rootPath = path.resolve( __dirname, '../..', config.root||'storage' );
 
@@ -248,7 +259,7 @@ var notedRenderer = function(){
 		app.$('location').onkeyup = function(event) {
 			if (event.keyCode == 13) {
 				app.fetch(event.target.value);
-			};
+			}
 		};
 
 		app.$('save').onclick = function() {
@@ -294,7 +305,7 @@ var notedRenderer = function(){
 
 			if ( 'file' == event.node.type ) {
 				app.fetch(event.node.path);
-			};
+			}
 		});
 
 		// bind 'tree.click' event
@@ -371,7 +382,7 @@ var notedRenderer = function(){
 
 		if (!fs.existsSync(absPath)) {
 			app.notify('location not exist!');
-			return this
+			return this;
 		}
 
 		this.absPath = absPath;
@@ -382,7 +393,7 @@ var notedRenderer = function(){
 
 		if ( container === undefined )
 			container = 'md-input';
-		else if ( container == null )
+		else if ( container === null )
 			container = app.newTab();
 
 		if (this.absPath) {
@@ -423,7 +434,7 @@ var notedRenderer = function(){
 			// input += '\nfun: !!js/function function() {  }\n---\n';
 			// input += 'content\nmore';
 
-			if ( this.fileFrontMatter.length != 0 ) {
+			if ( this.fileFrontMatter.length !== 0 ) {
 				content += '---\n';
 				content += yaml.safeDump(this.fileFrontMatter);
 				content += '---\n';
@@ -578,9 +589,11 @@ var notedRenderer = function(){
 					link.href += "?" + toAppend;
 				} else {
 					if (link.href.indexOf("id") === -1) {
-						link.href += "&" + toAppend; } else {
-							link.href = link.href.replace(/id=\d{13}/, toAppend)}
-				};
+						link.href += "&" + toAppend;
+					} else {
+						link.href = link.href.replace(/id=\d{13}/, toAppend);
+					}
+				}
 			}
 		}
 
@@ -597,4 +610,4 @@ ipc.on('noted.app.start', function(message) {
 	noted.dispatch();
 });
 
-//win.on('close', function() {});
+// win.on('close', function() {});
