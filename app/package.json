@@ -1,7 +1,7 @@
 {
   "name": "noted",
   "productName": "Noted!",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "a Markdown editor written in javascript using electron",
   "license": "MIT",
   "homepage": "https://github.com/brothersincode/noted",
