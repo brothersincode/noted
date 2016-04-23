@@ -9,6 +9,7 @@
 
 /app/dev.md
 /app/noted.cmd
+/app/npm-debug.log
 
 /electron/*
 
