@@ -2,11 +2,14 @@
 var remote = require('remote'), // https://github.com/atom/electron/blob/master/docs/api/remote.md
 
 	__        = require('underscore'),
+	_         = require('lodash'), // https://lodash.com/
 	i18n      = require('i18n'), // https://github.com/mashpie/i18n-node
+	moment    = require('moment-jalaali'), // https://github.com/jalaali/moment-jalaali
 	NProg     = require('nprogress'), //http://tutorialzine.com/2013/09/quick-tip-progress-bar/
 	treeui    = require('treeui'), // https://github.com/tmcw/treeui
 	yaml      = require('js-yaml'), // https://github.com/nodeca/js-yaml
 	yamlFront = require('yaml-front-matter'), // https://github.com/dworthen/js-yaml-front-matter
+	count     = require('word-count'), // https://github.com/yuehu/word-count
 
 
 	shell     = require('shell'), // https://github.com/atom/electron/blob/master/docs/api/shell.md
